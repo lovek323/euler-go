@@ -78,3 +78,29 @@ func Factorial(n int) int {
 
     return n * Factorial(n-1)
 }
+
+func GetNthFibonacci(n int) *big.Int {
+    if (n == 1) {
+        return big.NewInt(1)
+    }
+
+    if (n == 2) {
+        return big.NewInt(1)
+    }
+
+    if (n == 3) {
+        return big.NewInt(2)
+    }
+
+    prev := [...]*big.Int{big.NewInt(1),big.NewInt(1),big.NewInt(2)}
+
+    for i := 4; i <= n; i++ {
+        prev[0] = prev[1]
+        prev[1] = prev[2]
+        prev[2] = new(big.Int)
+        prev[2].Set(prev[0])
+        prev[2].Add(prev[2], prev[1])
+    }
+
+    return prev[2]
+}
