@@ -1,21 +1,12 @@
 package main
 
-import "fmt"
-
-func getProperDivisors(n int) []int {
-    var d []int
-
-    for i := 1; i < n; i++ {
-        if n % i == 0 {
-            d = append(d, i)
-        }
-    }
-
-    return d
-}
+import (
+    "fmt"
+    "./lib"
+)
 
 func getSumProperDivisors(n int) int {
-    d := getProperDivisors(n)
+    d := lib.GetProperDivisors(n)
     s := 0
 
     for _, di := range d {
