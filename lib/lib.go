@@ -23,3 +23,15 @@ func IsPrime(x int) bool {
 
     return true
 }
+
+func NumDivisors(x int) int {
+    c := 2 // 1 and itself
+
+    for i := 2; i <= int(math.Sqrt(float64(x))); i++ {
+        if x % i == 0 {
+            c += 2
+        }
+    }
+
+    return c
+}
