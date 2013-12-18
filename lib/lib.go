@@ -1,6 +1,9 @@
 package lib
 
-import "math"
+import (
+    "math"
+    "math/big"
+)
 
 func IsPrime64(x int64) bool {
     var i int64
@@ -50,4 +53,28 @@ func GetProperDivisors(x int) []int {
     }
 
     return d
+}
+
+func FactorialBig(n *big.Int) *big.Int {
+    if n.Cmp(big.NewInt(0)) == -1 {
+        return big.NewInt(1)
+    }
+
+    if n.Cmp(big.NewInt(0)) == 0 {
+        return big.NewInt(1)
+    }
+
+    r := new(big.Int)
+    r.Set(n)
+    r.Mul(r, FactorialBig(n.Sub(n, big.NewInt(1))))
+
+    return r
+}
+
+func Factorial(n int) int {
+    if n < 0 || n == 0 {
+        return 1
+    }
+
+    return n * Factorial(n-1)
 }
