@@ -18,6 +18,11 @@ func IsPrime64(x int64) bool {
 }
 
 func IsPrime(x int) bool {
+    // our algorithm only deals with positive numbers, but -n is prime, iff n
+    // is prime
+
+    x = int(math.Abs(float64(x)))
+
     for i := 2; i <= int(math.Floor(math.Sqrt(float64(x)))); i++ {
         if x % i == 0 {
             return false
